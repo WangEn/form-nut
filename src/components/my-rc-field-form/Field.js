@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 
 
 export default class Field extends Component {
-  render() {
-    return (
-      <div>
-        <h3>Field</h3>
-      </div>
-    )
+  getControlled = () => {
+    return {
+      value: 'omg',
+      onChange: (e) => {
+        const newValue = e.target.value;
+        console.log('newValue:', newValue);
+      }
+    }
+  }
+  render () {
+    const { children } = this.props;
+    const returnChildNode = React.cloneElement(children, this.getControlled())
+
+    return returnChildNode;
   }
 }
