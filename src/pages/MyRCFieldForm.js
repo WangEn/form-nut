@@ -18,7 +18,7 @@ export default function MyRCFieldForm(props) {
   }
 
   useEffect(() => {
- 
+    console.log('form', form);
   }, []);
 
 
