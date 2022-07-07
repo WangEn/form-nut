@@ -6,7 +6,11 @@ export default class Field extends Component {
   static contextType = FieldContext;
 
   componentDidMount() {
-    this.context.registerFieldEntities(this);
+    this.unregister = this.context.registerFieldEntities(this);
+  }
+
+  componentWillUnmount() {
+    this.unregister();
   }
 
   onStoreChange = () => {
@@ -25,6 +29,7 @@ export default class Field extends Component {
     }
   }
   render () {
+    console.log('field render');
     const { children } = this.props;
     const returnChildNode = React.cloneElement(children, this.getControlled())
 

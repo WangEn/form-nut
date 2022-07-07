@@ -1,9 +1,15 @@
 import FieldContext from "./FieldContext";
+import useForm from "./useForm";
 
-export default function Form ({ children, form }) {
+export default function Form ({ children, form, onFinish, onFinishFailed }) {
+  const [formInstance] = useForm();
+  formInstance.setCallBacks({onFinish, onFinishFailed});
   return (
-    <form>
-      <FieldContext.Provider value={form}>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      formInstance.submit();
+    }}>
+      <FieldContext.Provider value={formInstance}>
       {children}
       </FieldContext.Provider>
     </form>
