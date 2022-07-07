@@ -2,7 +2,7 @@ import FieldContext from "./FieldContext";
 import useForm from "./useForm";
 
 export default function Form ({ children, form, onFinish, onFinishFailed }) {
-  const [formInstance] = useForm();
+  const [formInstance] = useForm(form);
   formInstance.setCallBacks({onFinish, onFinishFailed});
   return (
     <form onSubmit={(e) => {
